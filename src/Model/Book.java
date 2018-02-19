@@ -19,5 +19,35 @@ public class Book {
         this.price = price;
         this.type = type;
     }
+
+
+
+    public String getISBN() {
+        return ISBN;
+    }
+
+    public String getAuthorId() {
+        return authorId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public String getPublicationYear() {
+        return publicationYear;
+    }
+
+    public String getType() {
+        return type;
+    }
 }
 

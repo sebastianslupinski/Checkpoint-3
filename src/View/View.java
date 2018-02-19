@@ -1,5 +1,8 @@
 package View;
 
+import Model.Book;
+
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -37,6 +40,14 @@ public class View {
             }
         }
         return output;
+    }
+
+    public void displayListOfBooks(ArrayList<Book> books){
+        int index = 0;
+        for (Book book : books) {
+            View.displayText(index + "--->" + book.toString());
+            index++;
+        }
     }
 
     public static void displayText(String text) {

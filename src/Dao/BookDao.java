@@ -73,4 +73,40 @@ public class BookDao {
             books.add(bookToAdd);
         }
     }
+
+    public void saveNewBookToDatabase(Book newBook){
+        String ISBN = newBook.getISBN();
+        String authorId = newBook.getAuthorId();
+        String title = newBook.getTitle();
+        String publisher = newBook.getPublisher();
+        String publicationYear = newBook.getPublicationYear();
+        String price = newBook.getPrice();
+        String type = newBook.getType();
+
+        String sqlQuerry = "INSERT INTO Books(ISBN, author, title, publisher, publication_year, price, type) VALUES(?, ?, ?, ?, ?, ?, ?);";
+
+
+        try (PreparedStatement pstmt1 = connection.prepareStatement(sqlQuerry)) {
+            pstmt1.setString(1, ISBN);
+            pstmt1.setString(2, authorId);
+            pstmt1.setString(3, title);
+            pstmt1.setString(4, publisher);
+            pstmt1.setString(5, publicationYear);
+            pstmt1.setString(6, price);
+            pstmt1.setString(7, type);
+
+            pstmt1.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void closeConnection() {
+        try {
+            connection.close();
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+    }
 }

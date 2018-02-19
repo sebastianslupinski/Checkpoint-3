@@ -17,4 +17,6 @@ public class BookController {
         newBook = new Book(ISBN, authorId, title, publisher, publicationYear, price, type);
         return newBook;
     }
+
+    public static
 }

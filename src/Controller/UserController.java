@@ -1,11 +1,13 @@
 package Controller;
 
+import Model.Book;
 import View.View;
 import Dao.BookDao;
 
 public class UserController {
 
-    private BookDao bookDao = new BookDao();
+    private BookDao bookDao;
+    private BookController bookController;
     private String HEADER = "Choose what you want to do";
     private final String[] OPTIONS = {"Add new book", "?",
             "?", "?",
@@ -13,8 +15,12 @@ public class UserController {
             "?",
             "Exit"};
 
+    public UserController() {
+        this.bookDao = new BookDao();
+        this.HEADER = "Choose what you want to do";
+    }
 
-    public void run(String id) {
+    public void run() {
         bookDao.createBookObjects();
         Integer option = 1;
 
@@ -23,7 +29,8 @@ public class UserController {
             option = View.getNumber("Choose option: ");
             switch (option) {
                 case 1:
-
+                    Book newBook = BookController.addNewBook();
+                    bookDao.saveNewBookToDatabase(newBook);
                     break;
                 case 2:
 //                    this.createMentor(admin, loginDB);
@@ -42,7 +49,7 @@ public class UserController {
 //                    adminDB.exportAdmin(connection, admin);
 //                    break;
                 case 7:
-//                    closeConnection(connection);
+                    bookDao.closeConnection();
                     View.displayText("Good bye");
                     break;
             }
