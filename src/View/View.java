@@ -42,7 +42,7 @@ public class View {
         return output;
     }
 
-    public void displayListOfBooks(ArrayList<Book> books){
+    public static void displayListOfBooks(ArrayList<Book> books){
         int index = 0;
         for (Book book : books) {
             View.displayText(index + "--->" + book.toString());

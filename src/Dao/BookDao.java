@@ -7,17 +7,21 @@ import java.util.ArrayList;
 
 public class BookDao {
 
-    public ArrayList<Book> books = new ArrayList<>();
+    private ArrayList<Book> books = new ArrayList<>();
 
     private Connection connection = this.createConnection();
+
+    public ArrayList<Book> getBooks() {
+        return books;
+    }
 
     public Connection createConnection() {
 
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:books");
-        } catch ( Exception e ) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
         return connection;
@@ -58,7 +62,7 @@ public class BookDao {
         return allBooks;
     }
 
-    public void createBookObjects(){
+    public void createBookObjects() {
         ArrayList<String[]> booksInfo = getBooksDataFromDatabase();
         for (String[] bookInfo : booksInfo) {
             Book bookToAdd;
@@ -74,7 +78,7 @@ public class BookDao {
         }
     }
 
-    public void saveNewBookToDatabase(Book newBook){
+    public void saveNewBookToDatabase(Book newBook) {
         String ISBN = newBook.getISBN();
         String authorId = newBook.getAuthorId();
         String title = newBook.getTitle();
@@ -104,9 +108,24 @@ public class BookDao {
     public void closeConnection() {
         try {
             connection.close();
-        } catch ( Exception e ) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
     }
+
+    public void updateBook(String columnToUpdate, String newData, String ISBN){
+        String sql = "UPDATE Books SET ?=? WHERE ISBN=?;";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, columnToUpdate);
+            pstmt.setString(2, newData);
+            pstmt.setString(3, ISBN);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
+
+

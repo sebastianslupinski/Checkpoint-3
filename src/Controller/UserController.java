@@ -8,8 +8,8 @@ public class UserController {
 
     private BookDao bookDao;
     private BookController bookController;
-    private String HEADER = "Choose what you want to do";
-    private final String[] OPTIONS = {"Add new book", "?",
+    private String HEADER;
+    private final String[] OPTIONS = {"Add new book", "Edit Book",
             "?", "?",
             "?",
             "?",
@@ -33,20 +33,20 @@ public class UserController {
                     bookDao.saveNewBookToDatabase(newBook);
                     break;
                 case 2:
-//                    this.createMentor(admin, loginDB);
-//                    break;
+                    Book bookToEdit = BookController.getBook(bookDao);
+                    BookController.editBook(bookToEdit, bookDao);
                 case 3:
-//                    this.editMentor(admin, adminDB);
+//                    ??
 //                    break;
                 case 4:
-//                    this.assignMentorToGroup(admin, loginDB, adminDB, connection);
+//                    ??
 //                    break;
                 case 5:
-//                    this.displayMentorsGroup(connection, admin, studentDB);
+//                    ??
 //                    break;
                 case 6:
-//                    this.editAdminInfo(admin);
-//                    adminDB.exportAdmin(connection, admin);
+//                    ??
+//                    ??
 //                    break;
                 case 7:
                     bookDao.closeConnection();

@@ -20,8 +20,6 @@ public class Book {
         this.type = type;
     }
 
-
-
     public String getISBN() {
         return ISBN;
     }
@@ -48,6 +46,34 @@ public class Book {
 
     public String getType() {
         return type;
+    }
+
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
+    }
+
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setPublicationYear(String publicationYear) {
+        this.publicationYear = publicationYear;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
 
