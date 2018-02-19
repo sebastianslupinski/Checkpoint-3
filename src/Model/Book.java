@@ -2,15 +2,15 @@ package Model;
 
 public class Book {
 
-    private int ISBN;
-    private int authorId;
+    private String ISBN;
+    private String authorId;
     private String title;
     private String publisher;
-    private int publicationYear;
-    private double price;
-    private int type;
+    private String publicationYear;
+    private String price;
+    private String type;
 
-    public Book(int ISBN, int authorId, String title, String publisher, int publicationYear, double price, int type){
+    public Book(String ISBN, String authorId, String title, String publisher, String publicationYear, String price, String type){
         this.ISBN = ISBN;
         this.authorId = authorId;
         this.title = title;

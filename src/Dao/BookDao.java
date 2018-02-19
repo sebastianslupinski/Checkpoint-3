@@ -1,27 +1,29 @@
 package Dao;
 
+import Model.Book;
+
 import java.sql.*;
 import java.util.ArrayList;
 
 public class BookDao {
 
-    private Connection connection = this.createConnection();
+    public ArrayList<Book> books = new ArrayList<>();
 
+    private Connection connection = this.createConnection();
 
     public Connection createConnection() {
 
-        String url = "jdbc:sqlite:books.db";
         try {
-            connection = DriverManager.getConnection(url);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            Class.forName("org.sqlite.JDBC");
+            connection = DriverManager.getConnection("jdbc:sqlite:books");
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
         }
-
         return connection;
     }
 
     public ArrayList<String[]> getBooksDataFromDatabase() {
-
 
         String sql = "SELECT * FROM Books";
         int IsbnColumn = 0;
@@ -54,5 +56,21 @@ public class BookDao {
             System.exit(0);
         }
         return allBooks;
+    }
+
+    public void createBookObjects(){
+        ArrayList<String[]> booksInfo = getBooksDataFromDatabase();
+        for (String[] bookInfo : booksInfo) {
+            Book bookToAdd;
+            String ISBN = bookInfo[0];
+            String authorId = bookInfo[1];
+            String title = bookInfo[2];
+            String publisher = bookInfo[3];
+            String publicationYear = bookInfo[4];
+            String price = bookInfo[5];
+            String type = bookInfo[6];
+            bookToAdd = new Book(ISBN, authorId, title, publisher, publicationYear, price, type);
+            books.add(bookToAdd);
+        }
     }
 }
