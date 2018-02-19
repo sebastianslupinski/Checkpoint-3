@@ -56,13 +56,13 @@ public class BookController {
                 case 2:
                     String newTitle = View.getString("Enter Title");
                     bookToEdit.setTitle(newTitle);
-                    bookDao.updateBook("title", newTitle, ISBN);
+                    bookDao.updateBookTitle( newTitle, ISBN);
                     optionChosen = true;
                     break;
                 case 3:
                     String newPublisher = View.getString("Enter new Publisher");
                     bookToEdit.setPublisher(newPublisher);
-                    bookDao.updateBook("publisher", newPublisher, ISBN);
+                    bookDao.updateBookPublisher(newPublisher, ISBN);
                     optionChosen = true;
                     break;
                 case 4:

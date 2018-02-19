@@ -126,6 +126,30 @@ public class BookDao {
             System.out.println(e.getMessage());
         }
     }
+
+    public void updateBookPublisher(String newData, String ISBN){
+        String sql = "UPDATE Books SET publisher=? WHERE ISBN=?;";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, newData);
+            pstmt.setString(2, ISBN);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateBookTitle(String newData, String ISBN){
+        String sql = "UPDATE Books SET title=? WHERE ISBN=?;";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, newData);
+            pstmt.setString(2, ISBN);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
 
 
